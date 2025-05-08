@@ -1,4 +1,4 @@
-# The Whiteout Pattern ⬜
+# The Dendritic Pattern
 
 A [Nix](https://nix.dev) [flake-parts](https://flake.parts) usage pattern in which _every_ Nix file is a flake-parts module
 
