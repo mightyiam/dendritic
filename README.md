@@ -18,6 +18,25 @@ A [Nix](https://nix.dev) [flake-parts](https://flake.parts) usage pattern in whi
 
 —gerred ([source](https://x.com/devgerred/status/1909206297532117469))
 
+## Background
+
+[NixOS](https://nixos.org/manual/nixos/unstable/),
+[home-manager](https://github.com/nix-community/home-manager) and
+[nix-darwin](https://github.com/nix-darwin/nix-darwin)
+are popular projects that allow the user to produce [derivations](https://nix.dev/tutorials/nix-language.html#derivations)
+that can be customized by evaluating a [Nixpkgs module system](https://nix.dev/tutorials/module-system/) configuration.
+
+Figuring out a practical and expressive architecture for a codebase that provides configurations had proven to cost many a Nix user protracted periods and multiple refactorings.
+
+Factors that contribute to the complexity of such an architecture:
+
+- Multiple configurations
+- Sharing of some modules across some configurations
+- Multiple configuration classes (NixOS & home-manager)
+- Configuration nesting such as home-manager [within NixOS](https://nix-community.github.io/home-manager/index.xhtml#sec-install-nixos-module) or [within nix-darwin](https://nix-community.github.io/home-manager/index.xhtml#sec-install-nix-darwin-module)
+- Existence of concerns that span multiple configuration classes ("cross-cutting concerns")
+- Accessing values such as functions, constants and packages across files
+
 ## Description
 
 File paths convey what the contents mean to me, as opposed to adhering to a mechanism's design.
