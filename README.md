@@ -28,7 +28,7 @@ that can be customized by evaluating a [Nixpkgs module system](https://nix.dev/t
 
 Figuring out a practical and expressive architecture for a codebase that provides configurations had proven to cost many a Nix user protracted periods and multiple refactorings.
 
-Factors that contribute to the complexity of such an architecture:
+Factors contributing to the complexity of such an architecture:
 
 - Multiple configurations
 - Sharing of some modules across some configurations
@@ -37,14 +37,16 @@ Factors that contribute to the complexity of such an architecture:
 - Existence of concerns that span multiple configuration classes ("cross-cutting concerns")
 - Accessing values such as functions, constants and packages across files
 
-## Description
+## The pattern
 
-File paths convey what the contents mean to me, as opposed to adhering to a mechanism's design.
-Because each file, being a flake-parts module, can declare any number of nested modules (e.g. NixOS, Home Manager, NixVim).
-Thus, a single file can implement cross-cutting concerns.
+The dendritic pattern reconciles these factors using yet another application of the Nixpkgs module system: [flake-parts](https://flake.parts).
+Especially its option [`flake.modules`](https://flake.parts/options/flake-parts-modules.html).
 
-I have previously threaded `self` once from the flake-parts evaluation through to NixOS evaluation and a second time deeper into Home Manager evaluation.
-Instead, in this pattern, the flake-parts `config` can always be in scope when needed.
+Each and every file:
+- is a flake-parts module
+- implements a single feature
+- ...across all module classes it applies to
+- is at a path that serves to name the feature
 
 ## Usage in the wild
 
@@ -52,3 +54,10 @@ Instead, in this pattern, the flake-parts `config` can always be in scope when n
 - [Victor Borja (@vic)](https://github.com/vic/vix) ([adoption pull request](https://github.com/vic/vix/pull/115))
 - [Pol Dellaiera](https://github.com/drupol/nixos-x260) ([adoption pull request](https://github.com/drupol/nixos-x260/pull/83)) ([blog post](https://not-a-number.io/2025/refactoring-my-infrastructure-as-code-configurations/))
 - [Horizon Haskell](https://gitlab.horizon-haskell.net/nix/gitlab-ci)
+
+## Anti patterns
+
+Some aches the dendritic user is spared from:
+
+- Threading the flake `self` once from the flake-parts evaluation through to NixOS evaluation and a second time deeper into Home Manager evaluation.
+Instead, in this pattern, the flake-parts `config` can always be in scope when needed.
