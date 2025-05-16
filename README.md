@@ -52,7 +52,7 @@ Each and every file:
 
 - [Shahar "Dawn" Or (@mightyiam)](https://github.com/mightyiam/infra) ([adoption commit](https://github.com/mightyiam/infra/commit/b45e9e13759017fe18950ccc3b6deee2347e9175))
 - [Victor Borja (@vic)](https://github.com/vic/vix) ([adoption pull request](https://github.com/vic/vix/pull/115))
-- Pol Dellaiera ([blog post](https://not-a-number.io/2025/refactoring-my-infrastructure-as-code-configurations/))
+- [Pol Dellaiera](https://github.com/drupol/nixos-x260) ([adoption pull request](https://github.com/drupol/nixos-x260/pull/83)) ([blog post](https://not-a-number.io/2025/refactoring-my-infrastructure-as-code-configurations/))
 - [Horizon Haskell](https://gitlab.horizon-haskell.net/nix/gitlab-ci)
 
 ## Anti patterns
