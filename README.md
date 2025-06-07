@@ -57,7 +57,22 @@ Each and every file:
 
 ## Anti patterns
 
-Some aches the dendritic user is spared from:
+### `specialArgs` pass-thru
 
-- Threading the flake `self` once from the flake-parts evaluation through to NixOS evaluation and a second time deeper into Home Manager evaluation.
-Instead, in this pattern, the flake-parts `config` can always be in scope when needed.
+In a non-dendritic pattern some Nix files may be modules that are other than flake-parts
+(such as NixOS or home-manager).
+Often they require access to values that are defined outside of their config evaluation.
+Those values are often passed through to such evaluations
+via the `specialArgs` argument of `lib.evalModules` wrappers like `lib.nixosSystem`.
+
+For example, `scripts/foo.nix` defines a script called `script-foo`
+which is then included in `environment.systemPackages` in `nixos/laptop.nix`.
+`script-foo` is made available in `nixos/laptop.nix` by injecting it
+(or a superset of it, such as the flake `self` may be) via `specialArgs`.
+This might occur even once deeper from the NixOS evaluation into a nested home-manager evaluation
+(this time via `extraSpecialArgs`).
+
+In the dendritic pattern
+every file is a flake-parts module and can therefore add values to the flake-parts `config`.
+In turn, every file can also read from the flake-parts `config`.
+This makes the sharing of values between files seem trivial in comparison.
