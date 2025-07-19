@@ -57,6 +57,12 @@ Each and every file:
 - [Gaétan Lepage](https://github.com/GaetanLepage/nix-config) ([acknowledgment commit](https://github.com/GaetanLepage/nix-config/commit/3ed89eae1a8e13c1910eac5f89f2cdb4f48756ff))
 - [bivsk](https://github.com/bivsk/nix-iv) ([adoption pull request](https://github.com/bivsk/nix-iv/pull/2))
 
+## Community
+
+- [GitHub Discussions](https://github.com/mightyiam/dendritic/discussions)
+
+- [Matrix room: `#dendritic:matrix.org`](https://matrix.to/#/#dendritic:matrix.org)
+
 ## Anti patterns
 
 ### `specialArgs` pass-thru
