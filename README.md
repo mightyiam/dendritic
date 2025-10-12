@@ -48,6 +48,8 @@ Each and every file:
 - ...across all module classes it applies to
 - is at a path that serves to name the feature
 
+[The `vic/dendrix/dendritic` article](https://vic.github.io/dendrix/Dendritic.html) explains it further.
+
 ## Usage in the wild
 
 - [Shahar "Dawn" Or (@mightyiam)](https://github.com/mightyiam/infra) ([adoption commit](https://github.com/mightyiam/infra/commit/b45e9e13759017fe18950ccc3b6deee2347e9175))
