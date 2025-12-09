@@ -2,7 +2,7 @@
 
 # The Dendritic Pattern
 
-A [Nix](https://nix.dev) [flake-parts](https://flake.parts) usage pattern in which _every_ Nix file is a flake-parts module
+A [Nix](https://nix.dev) [module-system](https://nix.dev/tutorials/module-system/deep-dive.html) usage pattern in which _every_ Nix file is a [deferred-module](https://nixos.org/manual/nixos/stable/#sec-option-types-submodule)
 
 ## Testimonials
 
@@ -37,16 +37,40 @@ Factors contributing to the complexity of such an architecture:
 - Existence of concerns that span multiple configuration classes ("cross-cutting concerns")
 - Accessing values such as functions, constants and packages across files
 
-## The pattern
+## The Pattern
+
+The dendritic pattern is fundamentally about **deferred modules**—modules that can be instantiated multiple times with different configurations. This leverages the Nixpkgs module system's ability to delay module evaluation until all configuration is available.
+
+### Core Concept: Deferred Modules
+
+A deferred module is a function that returns a module. Instead of being evaluated immediately, it waits to be instantiated with specific configuration. This allows the same module definition to be reused across different contexts (NixOS, home-manager, nix-darwin) while maintaining type safety and proper option merging.
+
+Key properties:
+- Each file is a **deferred module** (A module evaluated later)
+- Implements a single feature across all module classes it applies to
+- Path serves as the feature name
+- Can be instantiated multiple times with different configurations
+
+### Example application of the pattern
 
 The dendritic pattern reconciles these factors using yet another application of the Nixpkgs module system: [flake-parts](https://flake.parts).
-Especially its option [`flake.modules`](https://flake.parts/options/flake-parts-modules.html).
+Especially its option [`flake.modules`](https://flake.parts/options/flake-parts-modules.html). (`type = lazyAttrsOf (lazyAttrsOf deferredModule)`)
 
 Each and every file:
 - is a flake-parts module
 - implements a single feature
 - ...across all module classes it applies to
 - is at a path that serves to name the feature
+
+### Important Notes
+
+⚠️ **Understanding deferred modules is essential before adopting this pattern.** Flake-parts is not required — it simply offers more ergonomic integration with flakes. You can implement the dendritic pattern using plain `lib.evalModules` with deferred modules.
+
+⚠️ **This is not about flake-parts specifically.** The pattern is about architectural principles using deferred modules.
+
+Resources for understanding deferred modules:
+- [NixOS Manual: Submodule type](https://nixos.org/manual/nixos/stable/#sec-option-types-submodule)
+- [Nix module system deep dive](https://nix.dev/tutorials/module-system/deep-dive.html)
 
 [The `vic/dendrix/dendritic` article](https://vic.github.io/dendrix/Dendritic.html) explains it further.
 
@@ -83,6 +107,6 @@ This might occur even once deeper from the NixOS evaluation into a nested home-m
 (this time via `extraSpecialArgs`).
 
 In the dendritic pattern
-every file is a flake-parts module and can therefore add values to the flake-parts `config`.
-In turn, every file can also read from the flake-parts `config`.
-This makes the sharing of values between files seem trivial in comparison.
+every file is a deferred module and can therefore participate in the module system evaluation.
+This allows files to add values to and read from the shared configuration scope,
+making the sharing of values between files trivial in comparison.
