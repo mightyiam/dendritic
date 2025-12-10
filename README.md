@@ -41,7 +41,9 @@ Factors contributing to the complexity of such an architecture:
 ## The pattern
 
 The dendritic pattern reconciles these factors using yet another application of the Nixpkgs module system—a *top-level configuration*.
-Commonly, this top-level configuration is a [flake-parts](https://flake.parts) one.
+Commonly, this top-level configuration is a [flake-parts](https://flake.parts) one,
+but it does not have to be.
+Here's an example of [a non-flake-parts implementation](https://github.com/vic/dendritic-unflake).
 
 Each and every file, in addition to being a top-level module:
 - implements a single feature
