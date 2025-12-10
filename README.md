@@ -2,7 +2,8 @@
 
 # The Dendritic Pattern
 
-A [Nix](https://nix.dev) [flake-parts](https://flake.parts) usage pattern in which _every_ Nix file is a flake-parts module
+A [Nixpkgs module system](https://nix.dev/tutorials/module-system/) usage pattern
+in which _every_ Nix file is a *top-level module*
 
 ## Testimonials
 
@@ -39,16 +40,27 @@ Factors contributing to the complexity of such an architecture:
 
 ## The pattern
 
-The dendritic pattern reconciles these factors using yet another application of the Nixpkgs module system: [flake-parts](https://flake.parts).
-Especially its option [`flake.modules`](https://flake.parts/options/flake-parts-modules.html).
+The dendritic pattern reconciles these factors using yet another application of the Nixpkgs module system—a *top-level configuration*.
+Commonly, this top-level configuration is a [flake-parts](https://flake.parts) one.
 
-Each and every file:
-- is a flake-parts module
+Each and every file, in addition to being a top-level module:
 - implements a single feature
 - ...across all module classes it applies to
 - is at a path that serves to name the feature
 
-[The `vic/dendrix/dendritic` article](https://vic.github.io/dendrix/Dendritic.html) explains it further.
+The pattern typically involves pervasive use of *deferred modules*,
+leveraging the module system's built-in type `deferredModule`,
+to store modules as values with merge semantics.
+A diferred module takes part in the evaluation of any number of configurations of its own class.
+In flake-parts, this is commonly achieved via the [`flake.modules` option](https://flake.parts/options/flake-parts-modules.html).
+
+Further documetation of the pattern can be found in [the `vic/dendrix/dendritic` article](https://vic.github.io/dendrix/Dendritic.html).
+
+## Required skills
+
+- [Nix language](https://nix.dev/tutorials/nix-language)
+- [Nixpkgs module system](https://nix.dev/tutorials/module-system/)
+- [The `deferredModule` type](https://nixos.org/manual/nixos/stable/#sec-option-types-submodule)
 
 ## Usage in the wild
 
@@ -69,7 +81,7 @@ Each and every file:
 
 ### `specialArgs` pass-thru
 
-In a non-dendritic pattern some Nix files may be modules that are other than flake-parts
+In a non-dendritic pattern some Nix files may be modules that are lower-level
 (such as NixOS or home-manager).
 Often they require access to values that are defined outside of their config evaluation.
 Those values are often passed through to such evaluations
@@ -83,6 +95,6 @@ This might occur even once deeper from the NixOS evaluation into a nested home-m
 (this time via `extraSpecialArgs`).
 
 In the dendritic pattern
-every file is a flake-parts module and can therefore add values to the flake-parts `config`.
-In turn, every file can also read from the flake-parts `config`.
+every file is a top-level module and can therefore add values to the top-level `config`.
+In turn, every file can also read from the top-level `config`.
 This makes the sharing of values between files seem trivial in comparison.
