@@ -3,7 +3,6 @@
 # The Dendritic Pattern
 
 A [Nixpkgs module system](https://nix.dev/tutorials/module-system/) usage pattern
-in which _every_ Nix file is a *top-level module*
 
 ## Testimonials
 
@@ -27,34 +26,45 @@ in which _every_ Nix file is a *top-level module*
 are popular projects that allow the user to produce [derivations](https://nix.dev/tutorials/nix-language.html#derivations)
 that can be customized by evaluating a [Nixpkgs module system](https://nix.dev/tutorials/module-system/) configuration.
 
-Figuring out a practical and expressive architecture for a codebase that provides configurations had proven to cost many a Nix user protracted periods and multiple refactorings.
+Figuring out a practical and expressive architecture for a codebase that provides configurations had proven to cost many a Nix user numerous rounds of re-architecturing.
 
-Factors contributing to the complexity of such an architecture:
+Factors contributing to the complexity of the matter:
 
 - Multiple configurations
-- Sharing of some modules across some configurations
-- Multiple configuration classes (NixOS & home-manager)
+- Sharing of modules across configurations
+- Multiple configuration classes (`nixos`, `home-manager`, etc.)
 - Configuration nesting such as home-manager [within NixOS](https://nix-community.github.io/home-manager/index.xhtml#sec-install-nixos-module) or [within nix-darwin](https://nix-community.github.io/home-manager/index.xhtml#sec-install-nix-darwin-module)
-- Existence of concerns that span multiple configuration classes ("cross-cutting concerns")
+- Cross-cutting concerns that span multiple configuration classes
 - Accessing values such as functions, constants and packages across files
 
 ## The pattern
 
 The dendritic pattern reconciles these factors using yet another application of the Nixpkgs module system—a *top-level configuration*.
-Commonly, this top-level configuration is a [flake-parts](https://flake.parts) one,
+The top-level configuration facilitates the declaration and evaluation of lower-level configurations, such as NixOS, home-manager and nix-darwin.
+
+Commonly, this top-level configuration is a [flake-parts](https://flake.parts) configuration,
 but it does not have to be.
+Alternatives to flake-parts may exist.
+Also, the module system can be used directly via (`lib.evalModules`).
 Here's an example of [a non-flake-parts implementation](https://github.com/vic/dendritic-unflake).
 
-Each and every file, in addition to being a top-level module:
-- implements a single feature
-- ...across all module classes it applies to
-- is at a path that serves to name the feature
+In the dendritic pattern each and every Nix file is a module of the top-level configuration.
+In other words, each and every Nix file is
+a Nixpkgs module system module that is imported directly into the evaluation of the top-level configuration.
+Each and every Nix file also
 
-The pattern typically involves pervasive use of *deferred modules*,
-leveraging the module system's built-in type `deferredModule`,
-to store modules as values with merge semantics.
-A diferred module takes part in the evaluation of any number of configurations of its own class.
-In flake-parts, this is commonly achieved via the [`flake.modules` option](https://flake.parts/options/flake-parts-modules.html).
+- implements a single feature
+- ...across all configurations that that feature applies to
+- is at a path that serves to name that feature
+
+The pattern typically involves storing lower-level configurations and modules
+such as NixOS, home-manager and nix-darwin
+as option values in the top-level configuration.
+Pervasively, the lower-level module options are of the type `deferredModule` that is inlcuded in Nixpkgs.
+A primary benefit of this type to the pattern are its value merge semantics.
+Lower-level modules take part in the evaluation of any number of lower-level configurations.
+flake-parts includes an optional module for storing lower-level modules:
+[`flake-parts.modules`](https://flake.parts/options/flake-parts-modules.html).
 
 Further documetation of the pattern can be found in [the `vic/dendrix/dendritic` article](https://vic.github.io/dendrix/Dendritic.html).
 
