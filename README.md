@@ -71,7 +71,7 @@ flake-parts includes an optional module for storing lower-level modules:
 - [Nixpkgs module system](https://nix.dev/tutorials/module-system/)
 - [The `deferredModule` type](https://nixos.org/manual/nixos/stable/#sec-option-types-submodule)
 
-## Usage in the wild (real-world implementations)
+## Real examples
 
 - [Shahar "Dawn" Or (@mightyiam)](https://github.com/mightyiam/infra) ([adoption commit](https://github.com/mightyiam/infra/commit/b45e9e13759017fe18950ccc3b6deee2347e9175))
 - [Victor Borja (@vic)](https://github.com/vic/vix) ([adoption pull request](https://github.com/vic/vix/pull/115)) ([forum answer](https://discourse.nixos.org/t/how-do-you-structure-your-nixos-configs/65851/8))
