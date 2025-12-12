@@ -2,7 +2,9 @@
 
 # The Dendritic Pattern
 
-A [Nixpkgs module system](https://nix.dev/tutorials/module-system/) usage pattern
+A [Nixpkgs module system](https://nix.dev/tutorials/module-system/) usage pattern. 
+
+See our annotated [example](example/).
 
 ## Testimonials
 
