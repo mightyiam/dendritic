@@ -81,7 +81,7 @@ flake-parts includes an optional module for storing lower-level modules:
 - [bivsk](https://github.com/bivsk/nix-iv) ([adoption pull request](https://github.com/bivsk/nix-iv/pull/2))
 - [Michael Belsanti](https://tangled.org/belsanti.xyz/nixconfig/tree/den)
 
-## Resources and Dendritic related libraries.
+## See also
 
 - [vic/dendrix/Dendritic](https://vic.github.io/dendrix/Dendritic.html) - on the benefits of the pattern
 - [vic/den](https://github.com/vic/den) - aspect-oriented Dendritic framework
