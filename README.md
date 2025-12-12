@@ -83,10 +83,9 @@ flake-parts includes an optional module for storing lower-level modules:
 
 ## Resources and Dendritic related libraries.
 
-- [vic/dendrix/Dendritic](https://vic.github.io/dendrix/Dendritic.html) - Documentation by @vic on the Dendritic pattern benefits.
-- [quasigod/unify](https://codeberg.org/quasigod/unify) - A framework for unifying multiple types of Nix configurations, allowing you to easily define them in the same modules.
-- [vic/den](https://github.com/vic/den) - Aspect-oriented Dendritic framework. 
-- [vic/dendritic-unflake](https://github.com/vic/dendritic-unflake) - Showcases non-flakes Dendritic implementations with different top-level modules.
+- [vic/dendrix/Dendritic](https://vic.github.io/dendrix/Dendritic.html) - on the benefits of the pattern
+- [vic/den](https://github.com/vic/den) - aspect-oriented Dendritic framework
+- [vic/dendritic-unflake](https://github.com/vic/dendritic-unflake) - non-flake, non-flake-parts examples
 
 ## Community
 
