@@ -84,7 +84,7 @@ flake-parts includes an optional module for storing lower-level modules:
 ## See also
 
 - [vic/dendrix/Dendritic](https://vic.github.io/dendrix/Dendritic.html) - on the benefits of the pattern
-- [vic/den](https://github.com/vic/den) - aspect-oriented Dendritic framework
+- [vic/den](https://github.com/vic/den) - aspect-oriented dendritic framework
 - [vic/dendritic-unflake](https://github.com/vic/dendritic-unflake) - non-flake, non-flake-parts examples
 
 ## Community
