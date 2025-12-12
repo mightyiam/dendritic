@@ -46,7 +46,6 @@ Commonly, this top-level configuration is a [flake-parts](https://flake.parts) c
 but it does not have to be.
 Alternatives to flake-parts may exist.
 Also, the module system can be used directly via (`lib.evalModules`).
-Here's an example of [a non-flake-parts implementation](https://github.com/vic/dendritic-unflake).
 
 In the dendritic pattern each and every Nix file is a module of the top-level configuration.
 In other words, each and every Nix file is
@@ -66,15 +65,13 @@ Lower-level modules take part in the evaluation of any number of lower-level con
 flake-parts includes an optional module for storing lower-level modules:
 [`flake-parts.modules`](https://flake.parts/options/flake-parts-modules.html).
 
-Further documetation of the pattern can be found in [the `vic/dendrix/dendritic` article](https://vic.github.io/dendrix/Dendritic.html).
-
 ## Required skills
 
 - [Nix language](https://nix.dev/tutorials/nix-language)
 - [Nixpkgs module system](https://nix.dev/tutorials/module-system/)
 - [The `deferredModule` type](https://nixos.org/manual/nixos/stable/#sec-option-types-submodule)
 
-## Usage in the wild
+## Real examples
 
 - [Shahar "Dawn" Or (@mightyiam)](https://github.com/mightyiam/infra) ([adoption commit](https://github.com/mightyiam/infra/commit/b45e9e13759017fe18950ccc3b6deee2347e9175))
 - [Victor Borja (@vic)](https://github.com/vic/vix) ([adoption pull request](https://github.com/vic/vix/pull/115)) ([forum answer](https://discourse.nixos.org/t/how-do-you-structure-your-nixos-configs/65851/8))
@@ -82,6 +79,13 @@ Further documetation of the pattern can be found in [the `vic/dendrix/dendritic`
 - [Horizon Haskell](https://gitlab.horizon-haskell.net/nix/gitlab-ci)
 - [Gaétan Lepage](https://github.com/GaetanLepage/nix-config) ([acknowledgment commit](https://github.com/GaetanLepage/nix-config/commit/3ed89eae1a8e13c1910eac5f89f2cdb4f48756ff))
 - [bivsk](https://github.com/bivsk/nix-iv) ([adoption pull request](https://github.com/bivsk/nix-iv/pull/2))
+- [Michael Belsanti](https://tangled.org/belsanti.xyz/nixconfig/tree/den)
+
+## See also
+
+- [vic/dendrix/Dendritic](https://vic.github.io/dendrix/Dendritic.html) - on the benefits of the pattern
+- [vic/den](https://github.com/vic/den) - aspect-oriented dendritic framework
+- [vic/dendritic-unflake](https://github.com/vic/dendritic-unflake) - non-flake, non-flake-parts examples
 
 ## Community
 
