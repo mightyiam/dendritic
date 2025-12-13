@@ -4,6 +4,8 @@
 
 A [Nixpkgs module system](https://nix.dev/tutorials/module-system/) usage pattern
 
+Includes [an annotated example](example)
+
 ## Testimonials
 
 > I adore this idea by @mightyiam of every file is a flake parts module and I think I will adopt it everywhere.
