@@ -47,10 +47,10 @@ but it does not have to be.
 Alternatives to flake-parts may exist.
 Also, the module system can be used directly via (`lib.evalModules`).
 
-In the dendritic pattern each and every Nix file is a module of the top-level configuration.
-In other words, each and every Nix file is
+In the dendritic pattern every Nix file is a module of the top-level configuration.
+In other words, every Nix file is
 a Nixpkgs module system module that is imported directly into the evaluation of the top-level configuration.
-Each and every Nix file also
+Every Nix file also
 
 - implements a single feature
 - ...across all configurations that that feature applies to
