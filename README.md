@@ -65,6 +65,32 @@ Lower-level modules take part in the evaluation of any number of lower-level con
 flake-parts includes an optional module for storing lower-level modules:
 [`flake-parts.modules`](https://flake.parts/options/flake-parts-modules.html).
 
+## Benefits
+
+### Type of every file is known
+
+The common question "what's in that Nix file?" is made irrelevant.
+They each contain a Nixpkgs module system module
+of the same [`class`](https://nixos.org/manual/nixpkgs/stable/#module-system-lib-evalModules-param-class)
+as the top-level configuration.
+
+### Automatic importing
+
+Since all files are top-level modules
+and their paths convey meaning only to the author,
+they can all be automatically imported using a trivial expression
+or [a small library](https://github.com/vic/import-tree).
+
+### File path independence
+
+In some patterns file paths are significant to some particular detail,
+such as the type of the expression the file contains
+or what specific configuration it belongs to.
+
+Contrary to those, in this pattern a file path represent a feature.
+Each file can be freely renamed and moved,
+and it can be split when it grows too large or too complex.
+
 ## Required skills
 
 - [Nix language](https://nix.dev/tutorials/nix-language)
