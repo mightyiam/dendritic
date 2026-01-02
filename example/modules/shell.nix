@@ -2,7 +2,7 @@
 { config, lib, ... }:
 {
   flake.modules = {
-    nixos.pc = nixosArgs: {
+    nixos.shell = nixosArgs: {
       programs.fish.enable = true;
       users.users.${config.username}.shell = nixosArgs.config.programs.fish.package;
     };

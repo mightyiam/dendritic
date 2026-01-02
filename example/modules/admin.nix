@@ -2,7 +2,7 @@
 { config, ... }:
 {
   flake.modules = {
-    nixos.pc = {
+    nixos.admin = {
       users.groups.wheel.members = [ config.username ];
     };
 
