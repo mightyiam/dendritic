@@ -114,6 +114,7 @@ and it can be split when it grows too large or too complex.
 - [vic/dendrix/Dendritic](https://vic.github.io/dendrix/Dendritic.html) - on the benefits of the pattern
 - [vic/den](https://github.com/vic/den) - aspect-oriented dendritic framework
 - [vic/dendritic-unflake](https://github.com/vic/dendritic-unflake) - non-flake, non-flake-parts examples
+- [Doc-Steve/dendritic-design-with-flake-parts](https://github.com/Doc-Steve/dendritic-design-with-flake-parts/wiki/Dendritic_Aspects) - module design guide
 
 ## Community
 
