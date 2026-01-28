@@ -107,7 +107,7 @@ and it can be split when it grows too large or too complex.
 - [Horizon Haskell](https://gitlab.horizon-haskell.net/nix/gitlab-ci)
 - [Gaétan Lepage](https://github.com/GaetanLepage/nix-config) ([acknowledgment commit](https://github.com/GaetanLepage/nix-config/commit/3ed89eae1a8e13c1910eac5f89f2cdb4f48756ff))
 - [bivsk](https://github.com/bivsk/nix-iv) ([adoption pull request](https://github.com/bivsk/nix-iv/pull/2))
-- [Michael Belsanti](https://tangled.org/belsanti.xyz/nixconfig/tree/den)
+- [Michael Belsanti](https://tangled.org/quasigod.xyz/nixconfig)
 
 ## See also
 
