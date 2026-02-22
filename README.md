@@ -63,7 +63,7 @@ Additionally, every top-level module:
 The pattern typically involves storing lower-level configurations and modules
 such as NixOS, home-manager and nix-darwin
 as option values in the top-level configuration.
-Pervasively, the lower-level module options are of the type `deferredModule` that is inlcuded in Nixpkgs.
+Pervasively, the lower-level module options are of the type `deferredModule` that is inclcuded in Nixpkgs.
 A primary benefit of this type to the pattern are its value merge semantics.
 Lower-level modules take part in the evaluation of any number of lower-level configurations.
 flake-parts includes an optional module for storing lower-level modules:
