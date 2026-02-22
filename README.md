@@ -49,10 +49,12 @@ but it does not have to be.
 Alternatives to flake-parts may exist.
 Also, the module system can be used directly via (`lib.evalModules`).
 
-In the dendritic pattern every Nix file is a module of the top-level configuration.
-In other words, every Nix file is
+In the dendritic pattern every Nix file
+except for entry points such as `default.nix` and `flake.nix`
+is a module of the top-level configuration.
+In other words, every Nix file that isn't an entry point is
 a Nixpkgs module system module that is imported directly into the evaluation of the top-level configuration.
-Every Nix file also
+Additionally, every top-level module:
 
 - implements a single feature
 - ...across all configurations that that feature applies to
@@ -72,13 +74,13 @@ flake-parts includes an optional module for storing lower-level modules:
 ### Type of every file is known
 
 The common question "what's in that Nix file?" is made irrelevant.
-They each contain a Nixpkgs module system module
+Non-entry point files contain a Nixpkgs module system module
 of the same [`class`](https://nixos.org/manual/nixpkgs/stable/#module-system-lib-evalModules-param-class)
 as the top-level configuration.
 
 ### Automatic importing
 
-Since all files are top-level modules
+Since all non-entry-point files are top-level modules
 and their paths convey meaning only to the author,
 they can all be automatically imported using a trivial expression
 or [a small library](https://github.com/vic/import-tree).
