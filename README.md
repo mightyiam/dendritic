@@ -146,3 +146,21 @@ In the dendritic pattern
 every file is a top-level module and can therefore add values to the top-level `config`.
 In turn, every file can also read from the top-level `config`.
 This makes the sharing of values between files seem trivial in comparison.
+
+### Proliferation of named lower-level modules
+
+> [!NOTE]
+> In flake-parts, named lower-level modules are often under the [`flake.modules`](https://flake.parts/options/flake-parts-modules.html) option.
+
+One may be tempted to assign each lower-level module to its own unique name.
+Such granularity would result in a great number of named modules.
+The cost of such a pattern is that `imports` lists would end up being much longer than necessary.
+For example, a `flake.modules.nixos.pc` module would import `with config.flake.modules.nixos; [fonts graphics audio <...and many more>]`.
+Another cost is that when a new named lower-level module is added,
+it would have to be added to all of the import lists in which it should be.
+That goes for the removal of named lower-level modules, as well.
+
+Avoid giving unique names to lower-level modules where possible.
+Instead, most lower-level modules should merge with others under the same name.
+For example, A NixOS module in `modules/fonts.nix` is assigned to `flake.modules.nixos.pc`,
+and another NixOS module in `modules/graphics.nix` is assigned to `flake.module.nixos.pc`, as well, and so on.
