@@ -41,6 +41,8 @@ Factors contributing to the complexity of the matter:
 
 ## The pattern
 
+### Top-level and lower-level modules and configurations
+
 The dendritic pattern reconciles these factors using yet another application of the Nixpkgs module system—a *top-level configuration*.
 The top-level configuration facilitates the declaration and evaluation of lower-level configurations, such as NixOS, home-manager and nix-darwin.
 
@@ -60,14 +62,33 @@ Additionally, every top-level module:
 - ...across all configurations that that feature applies to
 - is at a path that serves to name that feature
 
-The pattern typically involves storing lower-level configurations and modules
+Lower-level modules and configurations
 such as NixOS, home-manager and nix-darwin
-as option values in the top-level configuration.
-Pervasively, the lower-level module options are of the type `deferredModule` that is included in Nixpkgs.
-A primary benefit of this type to the pattern are its value merge semantics.
+are stored as option values in the top-level configuration.
+
 Lower-level modules take part in the evaluation of any number of lower-level configurations.
-flake-parts includes an optional module for storing lower-level modules:
-[`flake-parts.modules`](https://flake.parts/options/flake-parts-modules.html).
+
+### Lower-level module merging
+
+The Nixpkgs module system type `deferredModule` and similar implementations feature _value merging_.
+This allows multiple lower-level module values to merge under one distinct name.
+
+For example, in a top-level module, a lower-level module can be declared:
+
+> [!NOTE]
+> In flake-parts, named lower-level modules are often under the [`flake.modules`](https://flake.parts/options/flake-parts-modules.html) option.
+
+```nix
+# modules/audio.nix
+flake.modules.nixos.audio = { /* content */ };
+```
+
+Or it may be merged with others under a common name:
+
+```nix
+# modules/audio.nix
+flake.modules.nixos.pc = { /* content */ };
+```
 
 ## Benefits
 
@@ -147,10 +168,7 @@ every file is a top-level module and can therefore add values to the top-level `
 In turn, every file can also read from the top-level `config`.
 This makes the sharing of values between files seem trivial in comparison.
 
-### Proliferation of named lower-level modules
-
-> [!NOTE]
-> In flake-parts, named lower-level modules are often under the [`flake.modules`](https://flake.parts/options/flake-parts-modules.html) option.
+### Lower-level module name proliferation
 
 One may be tempted to assign each lower-level module to its own unique name.
 Such granularity would result in a great number of named modules.
@@ -160,7 +178,4 @@ Another cost is that when a new named lower-level module is added,
 it would have to be added to all of the import lists in which it should be.
 That goes for the removal of named lower-level modules, as well.
 
-Avoid giving unique names to lower-level modules where possible.
-Instead, most lower-level modules should merge with others under the same name.
-For example, A NixOS module in `modules/fonts.nix` is assigned to `flake.modules.nixos.pc`,
-and another NixOS module in `modules/graphics.nix` is assigned to `flake.module.nixos.pc`, as well, and so on.
+Consider merging multiple non-distinct lower-level modules under one distinct name.
