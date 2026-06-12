@@ -146,6 +146,35 @@ and it can be split when it grows too large or too complex.
 
 ## Anti patterns
 
+### Not declaring options
+
+Using _only_ existing options (such as flake-parts' `flake.modules`)
+for the storage of lower-lever modules prevents us from translating our mental model of the system into code.
+Declaring options for the storage of modules is easy:
+
+```nix
+# modules/nixos/base.nix
+{lib, ...}: {
+  options.nixos.base = lib.mkOption {
+    type = lib.types.deferredModule;
+  };
+}
+```
+
+Using them in another top-level module is also easy:
+
+```nix
+# modules/nixos/pc.nix
+{config, lib, ...}: {
+  options.nixos.pc = lib.mkOption {
+    type = lib.types.deferredModule;
+  };
+  config.nixos.pc = config.nixos.base;
+}
+```
+
+So, go ahead and model your infra the way serves you best.
+
 ### `specialArgs` pass-thru
 
 In a non-dendritic pattern some Nix files may be modules that are lower-level
