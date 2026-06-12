@@ -73,19 +73,16 @@ This allows multiple lower-level module values to merge under one distinct name.
 
 For example, in a top-level module, a lower-level module can be declared:
 
-> [!NOTE]
-> In flake-parts, named lower-level modules are often under the [`flake.modules`](https://flake.parts/options/flake-parts-modules.html) option.
-
 ```nix
 # modules/audio.nix
-flake.modules.nixos.audio = { /* content */ };
+nixos.modules.audio = { /* content */ };
 ```
 
 Or it may be merged with others under a common name:
 
 ```nix
 # modules/audio.nix
-flake.modules.nixos.pc = { /* content */ };
+nixos.modules.pc = { /* content */ };
 ```
 
 ## Benefits
@@ -200,7 +197,7 @@ This makes the sharing of values between files seem trivial in comparison.
 One may be tempted to assign each lower-level module to its own unique name.
 Such granularity would result in a great number of named modules.
 The cost of such a pattern is that `imports` lists would end up being much longer than necessary.
-For example, a `flake.modules.nixos.pc` module would import `with config.flake.modules.nixos; [fonts graphics audio <...and many more>]`.
+For example, a `nixos.modules.pc` module would import `with config.nixos.modules; [fonts graphics audio <...and many more>]`.
 Another cost is that when a new named lower-level module is added,
 it would have to be added to all of the import lists in which it should be.
 That goes for the removal of named lower-level modules, as well.
