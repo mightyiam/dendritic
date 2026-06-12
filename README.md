@@ -6,9 +6,9 @@ A [Nixpkgs module system](https://nix.dev/tutorials/module-system/) usage patter
 
 ## Testimonials
 
-> I adore this idea by @mightyiam of every file is a flake parts module and I think I will adopt it everywhere.
+> I adore this idea by @mightyiam of every file is a top-level module and I think I will adopt it everywhere.
 
-—Daniel Firth ([source](https://x.com/locallycompact/status/1909188620038046038))
+—Daniel Firth (modified from [source](https://x.com/locallycompact/status/1909188620038046038))
 
 > Massive, very interesting!
 
