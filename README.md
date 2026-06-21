@@ -203,3 +203,13 @@ it would have to be added to all of the import lists in which it should be.
 That goes for the removal of named lower-level modules, as well.
 
 Consider merging multiple non-distinct lower-level modules under one distinct name.
+
+### Fanaticism
+
+The dendritic pattern is merely a pattern.
+It's not a religion, law or a mandate.
+Use it where it fits and make exceptions where appropriate.
+Having Nixpkgs `callPackage` files interspersed among top-level module files
+is one reasonable exception to the pattern.
+Of course, they'd have to be excluded from automatic importing.
+A suggested naming scheme for these: `my-package.pkg.nix`.
