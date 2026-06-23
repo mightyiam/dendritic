@@ -120,6 +120,9 @@ and it can be split when it grows too large or too complex.
 ## Real examples
 
 - [Shahar "Dawn" Or (@mightyiam)](https://github.com/mightyiam/infra) ([adoption commit](https://github.com/mightyiam/infra/commit/b45e9e13759017fe18950ccc3b6deee2347e9175))
+
+Other examples, for which the author cannot vouch:
+
 - [Victor Borja (@vic)](https://github.com/vic/vix) ([adoption pull request](https://github.com/vic/vix/pull/115)) ([forum answer](https://discourse.nixos.org/t/how-do-you-structure-your-nixos-configs/65851/8))
 - [Pol Dellaiera](https://github.com/drupol/nixos-x260) ([adoption pull request](https://github.com/drupol/nixos-x260/pull/83)) ([blog post](https://not-a-number.io/2025/refactoring-my-infrastructure-as-code-configurations/))
 - [Horizon Haskell](https://gitlab.horizon-haskell.net/nix/gitlab-ci)
@@ -127,13 +130,6 @@ and it can be split when it grows too large or too complex.
 - [bivsk](https://github.com/bivsk/nix-iv) ([adoption pull request](https://github.com/bivsk/nix-iv/pull/2))
 - [Michael Belsanti](https://tangled.org/quasigod.xyz/nixconfig)
 - [Oliver Davies](https://git.oliverdavies.uk/opdavies/nix-config)
-
-## See also
-
-- [vic/dendrix/Dendritic](https://vic.github.io/dendrix/Dendritic.html) - on the benefits of the pattern
-- [vic/den](https://github.com/vic/den) - aspect-oriented dendritic framework
-- [vic/dendritic-unflake](https://github.com/vic/dendritic-unflake) - non-flake, non-flake-parts examples
-- [Doc-Steve/dendritic-design-with-flake-parts](https://github.com/Doc-Steve/dendritic-design-with-flake-parts/wiki/Dendritic_Aspects) - module design guide
 
 ## Community
 
