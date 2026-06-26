@@ -37,6 +37,14 @@ Factors contributing to the complexity of the matter:
 - Cross-cutting concerns that span multiple configuration classes
 - Accessing values such as functions, constants and packages across files
 
+## Required skills
+
+Understanding the dendritic pattern strictly depends on fair comprehension of the following:
+
+- [Nix language](https://nix.dev/tutorials/nix-language)
+- [Nixpkgs module system](https://nix.dev/tutorials/module-system/)
+- [The `deferredModule` type](https://nixos.org/manual/nixos/stable/#sec-option-types-submodule)
+
 ## The pattern
 
 ### Top-level and lower-level modules and configurations
@@ -110,12 +118,6 @@ or what specific configuration it belongs to.
 Contrary to those, in this pattern a file path represent a feature.
 Each file can be freely renamed and moved,
 and it can be split when it grows too large or too complex.
-
-## Required skills
-
-- [Nix language](https://nix.dev/tutorials/nix-language)
-- [Nixpkgs module system](https://nix.dev/tutorials/module-system/)
-- [The `deferredModule` type](https://nixos.org/manual/nixos/stable/#sec-option-types-submodule)
 
 ## Real examples
 
