@@ -211,3 +211,10 @@ Having Nixpkgs `callPackage` files interspersed among top-level module files
 is one reasonable exception to the pattern.
 Of course, they'd have to be excluded from automatic importing.
 A suggested naming scheme for these: `my-package.pkg.nix`.
+
+### `enable` options
+
+Often created using `lib.mkEnableOption`, `enable` options are necessary when a module is imported even though a feature it provides should not necessarily be enabled.
+This anti-pattern originates in NixOS, where most NixOS modules provided by Nixpkgs are imported by default.
+That was not a good idea. Don't repeat it.
+In most cases, importing a module should enable the feature that it provides.
