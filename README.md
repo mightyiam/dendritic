@@ -139,7 +139,7 @@ Other examples, for which the author cannot vouch:
 
 - [Matrix room: `#dendritic:matrix.org`](https://matrix.to/#/#dendritic:matrix.org)
 
-## Anti patterns
+## Anti-patterns
 
 ### Not declaring options
 
