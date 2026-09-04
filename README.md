@@ -131,6 +131,7 @@ Other examples, for which the author cannot vouch:
 - [Gaétan Lepage](https://github.com/GaetanLepage/nix-config) ([acknowledgment commit](https://github.com/GaetanLepage/nix-config/commit/3ed89eae1a8e13c1910eac5f89f2cdb4f48756ff))
 - [Michael Belsanti](https://tangled.org/quasigod.xyz/nixconfig)
 - [Oliver Davies](https://git.oliverdavies.uk/opdavies/nix-config)
+- [Eveeifyeve](https://github.com/eveeifyeve/Nix-Config)
 
 ## Community
 
